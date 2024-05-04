@@ -24,7 +24,7 @@ const LocalesSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Oferta: {
+    oferta: {
         type: String,
         required: true
     },

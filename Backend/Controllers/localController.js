@@ -37,19 +37,22 @@ exports.actualizarLocal = async (req, res) => {
 
     try{
 
-        const { idEncargado, nombre, direccion, telefono, correo, zona} = req.body;
+        const { area, direccion, caracteristicas, zona, oferta, valor,nombrePropietario, telefonoPropietario,llaves} = req.body;
         let local = await Local.findById(req.params.id);
 
         if(!local){
             res.status(404).json({ msg: 'No existe el local'});
         }
 
-        local.idEncargado = idEncargado;
-        local.nombre = nombre;
+        local.area = area;
         local.direccion = direccion;
-        local.telefono = telefono;
-        local.correo = correo;
+        local.caracteristicas = caracteristicas;
         local.zona = zona;
+        local.oferta = oferta;
+        local.valor = valor;
+        local.nombrePropietario = nombrePropietario;
+        local.telefonoPropietario = telefonoPropietario;
+        local.llaves = llaves;
 
         local= await Local.findOneAndUpdate({_id: req.params.id}, local, { new: true})
         res.json(local);
