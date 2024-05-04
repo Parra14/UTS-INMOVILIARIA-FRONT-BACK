@@ -3,16 +3,17 @@ const express = require('express');
 const router = express.Router();
 const localController = require('../Controllers/localController');
 const villaController = require('../Controllers/villaController');
+const inmuebleController =  require('../Controllers/inmuebleController')
 
 
 // Api/Usuarios
 //Rutas Casa
-router.post('/casa', localController.crearCasa);
-router.get('/casa', localController.listarCasa);
-router.put('/casa/:id', localController.actualizarCasa);
-router.get('/casa/:id', localController.obtenerCasa);
-router.delete('/casa/:id', localController.eliminarCasa);
-router.put('/casa/add-visita/:id', localController.agregarVisitaInmueble);
+router.post('/casa', inmuebleController.crearCasa);
+router.get('/casa', inmuebleController.listarCasa);
+router.put('/casa/:id', inmuebleController.actualizarCasa);
+router.get('/casa/:id', inmuebleController.obtenerCasa);
+router.delete('/casa/:id', inmuebleController.eliminarCasa);
+router.put('/casa/add-visita/:id', inmuebleController.agregarVisitaInmueble);
 
 
 //Rutas Villa
