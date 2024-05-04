@@ -105,3 +105,42 @@ exports.eliminarLocal = async (req, res) => {
     }
     console.log(req.body);
 }
+
+exports.agregarVisitaInmueble = async (req, res) => {
+
+    try{
+
+        const { nombreInteresado, telefonoInteresado, emailInteresado, fecheyhora, comentario } = req.body;
+        console.log(nombreInteresado);
+        console.log(telefonoInteresado);
+        console.log(emailInteresado);
+        console.log(fecheyhora);
+        console.log(comentario);
+
+        let local = await Local.findById(req.params.id);
+        console.log(local)
+
+        if(!local){
+            res.status(404).json({ msg: 'No existe el local'});
+        }
+
+        local.visitas.push({
+            nombreInteresado: nombreInteresado,
+            telefonoInteresado: telefonoInteresado,
+            emailInteresado: emailInteresado,
+            fecheyhora: fecheyhora,
+            comentario: comentario
+           });
+
+
+        local= await Local.findOneAndUpdate({_id: req.params.id}, local, { new: true})
+        res.json(local);
+
+
+
+    }catch(error){
+        console.log(error);
+        res.status(500).send('Hubo un error al momento de actualizar el local');
+    }
+    console.log(req.body);
+}

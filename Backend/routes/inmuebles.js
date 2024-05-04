@@ -32,7 +32,7 @@ router.get('/local', localController.listarLocal);
 router.put('/local/:id', localController.actualizarLocal);
 router.get('/local/:id', localController.obtenerLocal);
 router.delete('/local/:id', localController.eliminarLocal);
-router.put('/local/add-visita/:id', villaController.agregarVisitaInmueble);
+//router.put('/local/add-visita/:id', localController.agregarVisitaInmueble);
 
 
 
