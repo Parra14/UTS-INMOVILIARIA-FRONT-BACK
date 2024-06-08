@@ -1,4 +1,8 @@
 const Usuario = require("../models/Usuario");
+const jwt = require("jsonwebtoken");
+require("dotenv").config({ path: "variables.env" });
+const {Base64} = require('js-base64');
+
 
 exports.crearUsuario = async (req, res) => {
 
@@ -37,7 +41,7 @@ exports.actualizarUsuario = async (req, res) => {
 
     try{
 
-        const { DNI, nombre, apellido, correo, telefono, rol } = req.body;
+        const { DNI, nombre, apellido, email, password, telefono, rol } = req.body;
         let usuario = await Usuario.findById(req.params.id);
 
         if(!usuario){
@@ -47,7 +51,8 @@ exports.actualizarUsuario = async (req, res) => {
         usuario.DNI = DNI;
         usuario.nombre = nombre;
         usuario.apellido = apellido;
-        usuario.correo = correo;
+        usuario.email = email;
+        usuario.password = password;
         usuario.telefono = telefono;
         usuario.rol = rol;
 
@@ -105,3 +110,27 @@ exports.eliminarUsuario = async (req, res) => {
     }
     console.log(req.body);
 }
+
+exports.signin = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await Usuario.findOne({ email });
+      let passwordencode=password;
+      console.log(req.body)
+      console.log(user);
+      console.log(passwordencode);
+
+      if (!user) return res.status(401).send("El Email no existe");
+      console.log(user)
+      if (user.password !== passwordencode){
+        return res.status(401).send("La contraseña no coincide");}
+  
+      const token = jwt.sign({ _id: user._id, _rol: user.rol, _email: user.email }, process.env.KEYjwt);
+  
+      return res.status(200).json({ token });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("hubo un error :(");
+    }
+  };
+  
