@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="card">
+          <div class="card-body text-center">
+            <span class="titulo">Crear Oficina</span>
+            <form class="mt-3" [formGroup]="oficinaForm" (ngSubmit)="agregarOficina()">
+              <div class="mb-3">
+                <input type="text" formControlName="idEncargado" class="form-control form-control-lg"
+                  placeholder="ID del Encargado">
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('idEncargado')?.hasError('required') && oficinaForm.get('idEncargado')?.touched">
+                  <span>El ID del Encargado <strong>es Obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="Nombre">
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('nombre')?.hasError('required') && oficinaForm.get('nombre')?.touched">
+                  <span>El Nombre <strong>es Obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="direccion" class="form-control form-control-lg" placeholder="Dirección">
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('direccion')?.hasError('required') && oficinaForm.get('direccion')?.touched">
+                  <span>La Dirección <strong>es Obligatoria</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="text" formControlName="telefono" class="form-control form-control-lg" placeholder="Teléfono">
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('telefono')?.hasError('required') && oficinaForm.get('telefono')?.touched">
+                  <span>El Teléfono <strong>es Obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="email" formControlName="correo" class="form-control form-control-lg" placeholder="Correo">
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('correo')?.hasError('required') && oficinaForm.get('correo')?.touched">
+                  <span>El Correo <strong>es Obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <select formControlName="zona" class="form-control form-control-lg">
+                  <option value="" disabled selected>Selecciona una Zona</option>
+                  <option value="Norte">Norte</option>
+                  <option value="Sur">Sur</option>
+                  <option value="Oriente">Oriente</option>
+                  <option value="Occidente">Occidente</option>
+                </select>
+                <div class="text-danger"
+                  *ngIf="oficinaForm.get('zona')?.hasError('required') && oficinaForm.get('zona')?.touched">
+                  <span>La Zona <strong>es Obligatoria</strong></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <button routerLink="/listar-oficina" class="btn btn-secondary btn-lg float-start">VOLVER</button>
+                <button type="submit" [disabled]="oficinaForm.invalid" class="btn btn-success btn-lg float-end">ACEPTAR</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

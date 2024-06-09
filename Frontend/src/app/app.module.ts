@@ -17,6 +17,8 @@ import { LoadComponent } from './shaders/load/load.component';
 
 import { ListInmuebleComponent } from './components/inmuebles/list-inmueble/list-inmueble.component';
 import { CreateInmuebleComponent } from './components/inmuebles/create-inmueble/create-inmueble.component';
+import { ListarOficinaComponent } from './components/oficina/list-oficina/list-oficina.component';
+import { CreateOficinaComponent } from './components/oficina/create-oficina/create-oficina.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { CreateInmuebleComponent } from './components/inmuebles/create-inmueble/
     LoadComponent,
     ListInmuebleComponent,
     CreateInmuebleComponent,
+    ListarOficinaComponent,
+    CreateOficinaComponent,
   ],
   imports: [
     BrowserModule,
